@@ -1,0 +1,10 @@
+data/
+letsencrypt/
+db_data/
+
+.env
+secret.key
+*.log
+
+__pycache__/
+*.pyc

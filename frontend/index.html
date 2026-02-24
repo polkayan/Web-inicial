@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Seguro | Ghost Neon</title>
+    <style>
+        body { background-color: #0d0d0d; color: #00ffcc; font-family: monospace; text-align: center; padding: 50px; }
+        .contenedor { border: 1px solid #00ffcc; padding: 30px; display: inline-block; border-radius: 5px; box-shadow: 0 0 15px #00ffcc; }
+        input { background: #1a1a1a; color: #00ffcc; border: 1px solid #00ffcc; padding: 10px; margin: 10px 0; width: 80%; }
+        button { background: #1a1a1a; color: #00ffcc; border: 1px solid #00ffcc; padding: 10px 20px; cursor: pointer; text-transform: uppercase; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #00ffcc; color: #0d0d0d; }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h2>[+] TERMINAL DE REGISTRO [+]</h2>
+        <form action="/api/registro" method="POST">
+            <input type="text" name="nombre" placeholder="Introduce tu Nombre" required><br>
+            <input type="email" name="correo" placeholder="Introduce tu Correo" required><br>
+            <button type="submit">Enviar Datos Cifrados</button>
+        </form>
+    </div>
+</body>
+</html>
+

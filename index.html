@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | Rayan</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { color: #1c1e21; font-size: 24px; margin-bottom: 20px; }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input:focus { outline: none; border-color: #1877f2; box-shadow: 0 0 0 2px #e7f3ff; }
+        button {
+            width: 100%;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #166fe5; }
+        .footer { margin-top: 20px; font-size: 14px; color: #606770; border-top: 1px solid #dadde1; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Registro Seguro</h1>
+        <form action="/api/registro" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre de usuario" required>
+            <input type="email" name="correo" placeholder="Correo electrónico a cifrar" required>
+            <button type="submit">Registrar</button>
+        </form>
+        <div class="footer">
+            Proyecto gestionado por <strong>devops@Arch-linux</strong>
+        </div>
+    </div>
+</body>
+</html>
+
