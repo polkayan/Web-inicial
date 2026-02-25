@@ -6,18 +6,17 @@ import os
 
 app = Flask(__name__)
 
-# 1. Configuración de Logs
+# Configuración de los Logs
 logging.basicConfig(filename='registro_eventos.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
-# 2. Gestión segura de la Llave Maestra
+# Gestión de la Llave Maestra
 def obtener_clave():
     # Lee la llave del archivo local para no perder los datos al reiniciar
     if os.path.exists("secret.key"):
         with open("secret.key", "rb") as archivo:
             return archivo.read()
     else:
-        # Si no existe, la crea y la guarda
         clave_nueva = Fernet.generate_key()
         with open("secret.key", "wb") as archivo:
             archivo.write(clave_nueva)
@@ -25,7 +24,7 @@ def obtener_clave():
 
 cifrador = Fernet(obtener_clave())
 
-# 3. Conexión a la Base de Datos PostgreSQL
+# Conexión a la Base de Datos PostgreSQL
 def obtener_conexion():
     return psycopg2.connect(
         host=os.environ.get("DB_HOST", "base_de_datos"),
@@ -35,7 +34,7 @@ def obtener_conexion():
         password=os.environ.get("DB_PASSWORD", "contrasena_falsa_por_defecto")
     )
 
-# 4. Crear la tabla automáticamente al arrancar
+# Crear la tabla automáticamente al arrancar
 def inicializar_bd():
     try:
         conexion = obtener_conexion()
@@ -72,7 +71,7 @@ def registrar():
     # CIFRADO AES
     correo_cifrado = cifrador.encrypt(correo.encode()).decode()
 
-    # 5. Guardar en PostgreSQL
+    # Guardar en PostgreSQL
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor()
@@ -88,7 +87,6 @@ def registrar():
         logging.error(f"Error guardando en BD: {e}")
         return "ERROR INTERNO DEL SERVIDOR", 500
     
-    # 6. Respuesta estética y limpia
     return f"""
     <div style='font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: #f0f2f5; color: #1c1e21; padding: 40px; text-align: center; height: 100vh; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;'>
         <div style='background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 500px;'>

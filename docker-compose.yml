@@ -1,4 +1,4 @@
-kkservices:
+services:
   nginx-proxy:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: nginx_manager
@@ -16,6 +16,11 @@ kkservices:
     build: .
     container_name: panel_web
     restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      base_de_datos:
+        condition: service_healthy
     networks:
       - red_interna
 
@@ -23,13 +28,21 @@ kkservices:
     image: postgres:15-alpine
     container_name: db_segura
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       - POSTGRES_USER=${DB_USER:-admin}
       - POSTGRES_PASSWORD=${DB_PASSWORD:-contrasena_falsa_por_defecto}
       - POSTGRES_DB=${DB_NAME:-registro_usuarios}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-admin} -d ${DB_NAME:-registro_usuarios}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - red_interna
 
 networks:
   red_interna:
     driver: bridge
+
