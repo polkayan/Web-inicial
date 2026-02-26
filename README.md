@@ -11,7 +11,7 @@ Este repositorio contiene el código de un panel de acceso web. El sistema está
 
 
 
-## ruebas de Seguridad y Rendimiento
+## Pruebas de Seguridad y Rendimiento
 Se han realizado auditorías de carga y seguridad para garantizar la estabilidad del servicio:
 
 * **Protección SQL Injection:** Validado el uso de consultas parametrizadas que neutralizan intentos de inyección de código malicioso en los formularios.
